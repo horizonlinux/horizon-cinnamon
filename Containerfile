@@ -53,6 +53,61 @@ RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     done && unset -v toswap && \
 
 # Install Cinnamon Desktop Enviroment 
+RUN for spice in \
+        NetworkManager-adsl
+        NetworkManager-bluetooth
+        NetworkManager-iodine-gnome
+        NetworkManager-l2tp-gnome
+        NetworkManager-libreswan-gnome
+        NetworkManager-openconnect-gnome
+        NetworkManager-openvpn-gnome
+        NetworkManager-ppp
+        NetworkManager-pptp-gnome
+        NetworkManager-vpnc-gnome
+        NetworkManager-wifi
+        NetworkManager-wwan
+        abrt-desktop
+        blueman
+        cinnamon
+        cinnamon-control-center
+        cinnamon-screensaver
+        ffmpegthumbnailer
+        firewall-config
+        gnome-calculator
+        gnome-disk-utility
+        gnome-screenshot
+        gnome-software
+        gnome-system-monitor
+        gnome-terminal
+        gstreamer1-plugins-ugly-free
+        gvfs-archive
+        gvfs-gphoto2
+        gvfs-mtp
+        gvfs-smb
+        metacity
+        mpv
+        nemo-fileroller
+        nemo-image-converter
+        nemo-preview
+        pipewire-alsa
+        pipewire-pulseaudio
+        powerline
+        qadwaitadecorations-qt5
+        sane-backends-drivers-scanners
+        setroubleshoot
+        simple-scan
+        slick-greeter
+        slick-greeter-cinnamon
+        system-config-printer
+        tmux
+        tmux-powerline
+        vim-powerline
+        xawtv
+        xdg-user-dirs-gtk
+        xed
+        xreader
+        wireplumber
+        lightdm
 
 ### LINTING
 ## Verify final image and contents are correct.
