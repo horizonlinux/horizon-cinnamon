@@ -57,7 +57,8 @@ RUN --mount=type=cache,dst=/var/cache \
     --mount=type=cache,dst=/var/log \
     --mount=type=bind,from=ctx,source=/,target=/ctx \
     --mount=type=tmpfs,dst=/tmp \
-    dnf5 -y install \
+    for spice in \
+        uupd \
         NetworkManager-adsl \
         NetworkManager-bluetooth \
         NetworkManager-iodine-gnome \
@@ -109,7 +110,16 @@ RUN --mount=type=cache,dst=/var/cache \
         xed \
         xreader \
         wireplumber \
-        lightdm
+        lightdm; \
+    do \
+    dnf5 install $spice;
+
+# Configure
+RUN --mount=type=cache,dst=/var/cache \
+    --mount=type=cache,dst=/var/log \
+    --mount=type=bind,from=ctx,source=/,target=/ctx \
+    --mount=type=tmpfs,dst=/tmp \
+    systemctl enable lightdm
 
 ### LINTING
 ## Verify final image and contents are correct.
