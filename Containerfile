@@ -112,7 +112,8 @@ RUN --mount=type=cache,dst=/var/cache \
         wireplumber \
         lightdm; \
     do \
-    dnf5 install $spice;
+    dnf5 install $spice; && \
+    done && unset -v spice
 
 # Configure
 RUN --mount=type=cache,dst=/var/cache \
