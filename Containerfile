@@ -23,11 +23,11 @@ RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     --mount=type=cache,dst=/var/cache \
     --mount=type=cache,dst=/var/log \
     --mount=type=tmpfs,dst=/tmp \
-    dnf5 -y install dnf5-plugins && \
     for copr in \
         ublue-os/staging \
          ublue-os/packages \
     do \
+    dnf5 -y install dnf5-plugins && \
     dnf5 -y copr enable $copr; \
     done && unset -v copr && \
     dnf5 -y install --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terra$releasever' terra-release{,-extras} && \
