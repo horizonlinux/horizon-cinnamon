@@ -87,8 +87,9 @@ RUN --mount=type=cache,dst=/var/cache \
         powerline \
         qgnomeplatform-qt5 \
         redshift-gtk \
-        slick-greeter \
-        slick-greeter-cinnamon \
+       # slick-greeter \
+       # slick-greeter-cinnamon \
+        lightdm-gtk \
         system-config-printer \
         totem-video-thumbnailer \
         wireplumber \
