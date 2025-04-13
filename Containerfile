@@ -122,7 +122,7 @@ RUN --mount=type=cache,dst=/var/cache \
     find /var/cache/* -maxdepth 0 -type d \! -name libdnf5 \! -name rpm-ostree -exec rm -fr {} \; && \
     mkdir -p /var/tmp && \
     chmod -R 1777 /var/tmp && \
-    ostree container commit && \
+    ostree container commit
 
 ### LINTING
 ## Verify final image and contents are correct.
