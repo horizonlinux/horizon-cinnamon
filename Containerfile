@@ -50,7 +50,7 @@ RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     for toswap in linux-firmware netronome-firmware libertas-firmware atheros-firmware realtek-firmware tiwilink-firmware cirrus-audio-firmware linux-firmware-whence iwlwifi-dvm-firmware iwlwifi-mvm-firmware amd-ucode-firmware qcom-firmware mt7xxx-firmware liquidio-firmware nxpwireless-firmware intel-vsc-firmware nvidia-gpu-firmware intel-audio-firmware amd-gpu-firmware iwlegacy-firmware intel-gpu-firmware mlxsw_spectrum-firmware qed-firmware mrvlprestera-firmware brcmfmac-firmware dvb-firmware; do \
     done && unset -v toswap && \
     dnf5 -y config-manager setopt "*rpmfusion*".enabled=0 && \
-    done && unset -v toswap && \
+    done && unset -v toswap
 
 # Install Cinnamon Desktop Enviroment 
 RUN --mount=type=cache,dst=/var/cache \
