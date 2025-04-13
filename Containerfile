@@ -24,11 +24,11 @@ RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     --mount=type=cache,dst=/var/log \
     --mount=type=tmpfs,dst=/tmp \
     dnf5 -y install dnf5-plugins && \
-        for copr in \
-            ublue-os/staging \
-            ublue-os/packages \
+    for copr in \
+        ublue-os/staging \
+         ublue-os/packages \
     do \
-        dnf5 -y copr enable $copr; \
+    dnf5 -y copr enable $copr; \
     done && unset -v copr && \
     dnf5 -y install --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terra$releasever' terra-release{,-extras} && \
     dnf5 -y config-manager addrepo --overwrite --from-repofile=https://pkgs.tailscale.com/stable/fedora/tailscale.repo && \
@@ -40,7 +40,8 @@ RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     dnf5 -y config-manager setopt "terra-nvidia".enabled=false && \
     dnf5 -y config-manager setopt "*rpmfusion*".priority=5 "*rpmfusion*".exclude="mesa-*" && \
     dnf5 -y config-manager setopt "*fedora*".exclude="mesa-* kernel-core-* kernel-modules-* kernel-uki-virt-*" && \
-    dnf5 -y config-manager setopt "*staging*".exclude="scx-scheds kf6-* mesa* mutter* rpm-ostree* systemd* gnome-shell gnome-settings-daemon gnome-control-center gnome-software libadwaita tuned*"
+    dnf5 -y config-manager setopt "*staging*".exclude="scx-scheds kf6-* mesa* mutter* rpm-ostree* systemd* gnome-shell gnome-settings-daemon gnome-control-center gnome-software libadwaita tuned*" && \
+    echo "done"
 
 # Install kernel
 RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
