@@ -49,11 +49,8 @@ RUN --mount=type=cache,dst=/var/cache \
     --mount=type=tmpfs,dst=/tmp \
     for spice in \
         uupd \
-        NetworkManager-adsl \
+       NetworkManager-adsl \
         NetworkManager-bluetooth \
-        NetworkManager-iodine-gnome \
-        NetworkManager-l2tp-gnome \
-        NetworkManager-libreswan-gnome \
         NetworkManager-openconnect-gnome \
         NetworkManager-openvpn-gnome \
         NetworkManager-ppp \
@@ -61,17 +58,14 @@ RUN --mount=type=cache,dst=/var/cache \
         NetworkManager-vpnc-gnome \
         NetworkManager-wifi \
         NetworkManager-wwan \
-        abrt-desktop  \
         blueman \
         cinnamon \
         cinnamon-control-center \
         cinnamon-screensaver \
-        ffmpegthumbnailer \
         firewall-config \
-        gnome-calculator \
+        glx-utils \
         gnome-disk-utility \
         gnome-screenshot \
-        gnome-software \
         gnome-system-monitor \
         gnome-terminal \
         gstreamer1-plugins-ugly-free \
@@ -79,27 +73,41 @@ RUN --mount=type=cache,dst=/var/cache \
         gvfs-gphoto2 \
         gvfs-mtp \
         gvfs-smb \
+        imsettings-gsettings \
+        initial-setup-gui \
+        mesa-dri-drivers \
+        mesa-vulkan-drivers \
         muffin \
         nemo-fileroller \
         nemo-image-converter \
         nemo-preview \
+        nm-connection-editor \
         pipewire-alsa \
         pipewire-pulseaudio \
         powerline \
-        qadwaitadecorations-qt5 \
-        sane-backends-drivers-scanners \
-        setroubleshoot \
-        simple-scan \
+        qgnomeplatform-qt5 \
+        redshift-gtk \
         slick-greeter \
         slick-greeter-cinnamon \
         system-config-printer \
-        tmux \
-        tmux-powerline \
-        vim-powerline \
+        totem-video-thumbnailer \
+        wireplumber \
         xdg-user-dirs-gtk \
-        xed \
-        xreader \
-        wireplumber; \
+        xorg-x11-drv-amdgpu \
+        xorg-x11-drv-ati \
+        xorg-x11-drv-evdev \
+        xorg-x11-drv-fbdev \
+        xorg-x11-drv-libinput \
+        xorg-x11-drv-nouveau \
+        xorg-x11-drv-qxl \
+        xorg-x11-drv-wacom \
+        xorg-x11-server-Xorg \
+        xorg-x11-xauth \
+        xorg-x11-xinit \
+        xorg-x11-drv-intel \
+        xorg-x11-drv-openchrome \
+        xorg-x11-drv-vesa \
+        xorg-x11-drv-vmware; \
     do \
     dnf5 install -y $spice; \
     done && unset -v spice
