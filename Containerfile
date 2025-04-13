@@ -25,7 +25,7 @@ RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     --mount=type=tmpfs,dst=/tmp \
     for copr in \
         ublue-os/staging \
-         ublue-os/packages \
+         ublue-os/packages; \
     do \
     dnf5 -y install dnf5-plugins && \
     dnf5 -y copr enable $copr; \
