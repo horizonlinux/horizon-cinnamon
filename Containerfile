@@ -25,7 +25,7 @@ RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     --mount=type=tmpfs,dst=/tmp \
     for copr in \
         ublue-os/staging \
-         ublue-os/packages; \
+        ublue-os/packages; \
     do \
     dnf5 -y install dnf5-plugins && \
     dnf5 -y copr enable $copr; \
@@ -40,8 +40,7 @@ RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     dnf5 -y config-manager setopt "terra-nvidia".enabled=false && \
     dnf5 -y config-manager setopt "*rpmfusion*".priority=5 "*rpmfusion*".exclude="mesa-*" && \
     dnf5 -y config-manager setopt "*fedora*".exclude="mesa-* kernel-core-* kernel-modules-* kernel-uki-virt-*" && \
-    dnf5 -y config-manager setopt "*staging*".exclude="scx-scheds kf6-* mesa* mutter* rpm-ostree* systemd* gnome-shell gnome-settings-daemon gnome-control-center gnome-software libadwaita tuned*" && \
-    echo "done"
+    dnf5 -y config-manager setopt "*staging*".exclude="scx-scheds kf6-* mesa* mutter* rpm-ostree* systemd* gnome-shell gnome-settings-daemon gnome-control-center gnome-software libadwaita tuned*"
 
 # Install Cinnamon Desktop Enviroment 
 RUN --mount=type=cache,dst=/var/cache \
@@ -101,11 +100,10 @@ RUN --mount=type=cache,dst=/var/cache \
         xed \
         xreader \
         wireplumber \
-        lightdm-gtk \
         lightdm-settings \
         lightdm; \
     do \
-    dnf5 install $spice; && \
+    dnf5 install $spice; \
     done && unset -v spice
 
 # Configure
