@@ -49,7 +49,8 @@ RUN --mount=type=cache,dst=/var/cache \
     --mount=type=tmpfs,dst=/tmp \
     for spice in \
         uupd \
-       NetworkManager-adsl \
+        flatpak \
+        NetworkManager-adsl \
         NetworkManager-bluetooth \
         NetworkManager-openconnect-gnome \
         NetworkManager-openvpn-gnome \
@@ -119,6 +120,19 @@ RUN --mount=type=cache,dst=/var/cache \
     --mount=type=bind,from=ctx,source=/,target=/ctx \
     --mount=type=tmpfs,dst=/tmp \
     systemctl enable lightdm
+    systemctl enable rpm-ostree-countme.service
+    systemctl enable tailscaled.service
+    systemctl enable dconf-update.service
+    systemctl --global enable ublue-flatpak-manager.service
+    systemctl enable ublue-system-setup.service
+    systemctl enable ublue-guest-user.service
+    systemctl --global enable ublue-user-setup.service
+    systemctl --global enable podman-auto-update.timer
+    systemctl enable check-sb-key.service
+    echo 'u lightdm - "Light Display Manager" /var/lib/lightdm' > /usr/lib/sysusers.d/lightdm.conf
+    echo 'u nm-openconnect - "NetworkManager OpenConnect Plugin" /var/lib/nm-openconnect /usr/sbin/nologin' > /usr/lib/sysusers.d/nm-openconnect.conf
+    echo 'u nm-openvpn - "NetworkManager OpenVPN Plugin" /var/lib/nm-openvpn /usr/sbin/nologin' > /usr/lib/sysusers.d/nm-openvpn.conf
+    echo 'u wsdd - "Web Services Dynamic Discovery Daemon" /var/lib/wsdd /usr/sbin/nologin' > /usr/lib/sysusers.d/wsdd.conf
 
 # Cleanup
 RUN --mount=type=cache,dst=/var/cache \
