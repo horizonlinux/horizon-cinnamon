@@ -43,19 +43,6 @@ RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     dnf5 -y config-manager setopt "*staging*".exclude="scx-scheds kf6-* mesa* mutter* rpm-ostree* systemd* gnome-shell gnome-settings-daemon gnome-control-center gnome-software libadwaita tuned*" && \
     echo "done"
 
-# Install kernel
-RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
-    --mount=type=cache,dst=/var/cache \
-    --mount=type=cache,dst=/var/log \
-    --mount=type=tmpfs,dst=/tmp \
-    for toswap in linux-firmware netronome-firmware libertas-firmware atheros-firmware realtek-firmware tiwilink-firmware cirrus-audio-firmware linux-firmware-whence iwlwifi-dvm-firmware iwlwifi-mvm-firmware amd-ucode-firmware qcom-firmware mt7xxx-firmware liquidio-firmware nxpwireless-firmware intel-vsc-firmware nvidia-gpu-firmware intel-audio-firmware amd-gpu-firmware iwlegacy-firmware intel-gpu-firmware mlxsw_spectrum-firmware qed-firmware mrvlprestera-firmware brcmfmac-firmware dvb-firmware; do \
-        dnf5 -y swap --repo copr:copr.fedorainfracloud.org:bazzite-org:bazzite $toswap $toswap; \
-    done && unset -v toswap && \
-    dnf5 -y config-manager setopt "*rpmfusion*".enabled=0 && \
-    for toswap in rpm-ostree bootc; do \
-        dnf5 -y swap --repo copr:copr.fedorainfracloud.org:bazzite-org:bazzite $toswap $toswap; \
-    done && unset -v toswap && \
-
 # Install Cinnamon Desktop Enviroment 
 RUN --mount=type=cache,dst=/var/cache \
     --mount=type=cache,dst=/var/log \
