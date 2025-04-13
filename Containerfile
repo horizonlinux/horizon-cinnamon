@@ -99,9 +99,7 @@ RUN --mount=type=cache,dst=/var/cache \
         xdg-user-dirs-gtk \
         xed \
         xreader \
-        wireplumber \
-        lightdm-settings \
-        lightdm; \
+        wireplumber; \
     do \
     dnf5 install $spice; \
     done && unset -v spice
