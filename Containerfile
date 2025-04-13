@@ -52,7 +52,9 @@ RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
         dnf5 -y swap --repo copr:copr.fedorainfracloud.org:bazzite-org:bazzite $toswap $toswap; \
     done && unset -v toswap && \
     dnf5 -y config-manager setopt "*rpmfusion*".enabled=0 && \
-    done && unset -v toswap
+    for toswap in rpm-ostree bootc; do \
+        dnf5 -y swap --repo copr:copr.fedorainfracloud.org:bazzite-org:bazzite $toswap $toswap; \
+    done && unset -v toswap && \
 
 # Install Cinnamon Desktop Enviroment 
 RUN --mount=type=cache,dst=/var/cache \
