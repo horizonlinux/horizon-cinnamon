@@ -136,6 +136,10 @@ RUN --mount=type=cache,dst=/var/cache \
     find /var/cache/* -maxdepth 0 -type d \! -name libdnf5 \! -name rpm-ostree -exec rm -fr {} \; && \
     mkdir -p /var/tmp && \
     chmod -R 1777 /var/tmp && \
+    if [ ! -d /var/cache/lightdm ]; then mkdir /var/cache/lightdm; fi && \
+    if [ ! -d /var/log/lightdm ]; then mkdir /var/log/lightdm; fi && \
+    if [ ! -d /var/lib/lightdm ]; then mkdir /var/lib/lightdm; fi && \
+    if [ ! -d /var/lib/lightdm-data ]; then mkdir /var/lib/lightdm-data; fi && \
     ostree container commit
 
 ### LINTING
