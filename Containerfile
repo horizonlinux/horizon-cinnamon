@@ -48,6 +48,7 @@ RUN --mount=type=cache,dst=/var/cache \
     --mount=type=bind,from=ctx,source=/,target=/ctx \
     --mount=type=tmpfs,dst=/tmp \
     for spice in \
+        gdm \
         uupd \
         flatpak \
         NetworkManager-adsl \
@@ -90,7 +91,7 @@ RUN --mount=type=cache,dst=/var/cache \
         redshift-gtk \
        # slick-greeter \
        # slick-greeter-cinnamon \
-        lightdm-gtk \
+       # lightdm-gtk \
         system-config-printer \
         totem-video-thumbnailer \
         wireplumber \
@@ -119,8 +120,10 @@ RUN --mount=type=cache,dst=/var/cache \
     --mount=type=cache,dst=/var/log \
     --mount=type=bind,from=ctx,source=/,target=/ctx \
     --mount=type=tmpfs,dst=/tmp \
-    systemctl enable lightdm && \
-    echo 'u lightdm - "Light Display Manager" /var/lib/lightdm' > /usr/lib/sysusers.d/lightdm.conf && \
+    systemctl enable gdm && \
+    # systemctl enable lightdm && \
+    echo 'u gdm 42 "GNOME Display Manager" /var/lib/gdm' > /usr/lib/sysusers.d/gdm.conf && \
+    # echo 'u lightdm - "Light Display Manager" /var/lib/lightdm' > /usr/lib/sysusers.d/lightdm.conf && \
     echo 'u nm-openconnect - "NetworkManager OpenConnect Plugin" /var/lib/nm-openconnect /usr/sbin/nologin' > /usr/lib/sysusers.d/nm-openconnect.conf && \
     echo 'u nm-openvpn - "NetworkManager OpenVPN Plugin" /var/lib/nm-openvpn /usr/sbin/nologin' > /usr/lib/sysusers.d/nm-openvpn.conf && \
     echo 'u wsdd - "Web Services Dynamic Discovery Daemon" /var/lib/wsdd /usr/sbin/nologin' > /usr/lib/sysusers.d/wsdd.conf
@@ -136,10 +139,6 @@ RUN --mount=type=cache,dst=/var/cache \
     find /var/cache/* -maxdepth 0 -type d \! -name libdnf5 \! -name rpm-ostree -exec rm -fr {} \; && \
     mkdir -p /var/tmp && \
     chmod -R 1777 /var/tmp && \
-    if [ ! -d /var/cache/lightdm ]; then mkdir /var/cache/lightdm; fi && \
-    if [ ! -d /var/log/lightdm ]; then mkdir /var/log/lightdm; fi && \
-    if [ ! -d /var/lib/lightdm ]; then mkdir /var/lib/lightdm; fi && \
-    if [ ! -d /var/lib/lightdm-data ]; then mkdir /var/lib/lightdm-data; fi && \
     ostree container commit
 
 ### LINTING
