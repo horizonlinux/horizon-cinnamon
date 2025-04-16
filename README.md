@@ -1,8 +1,8 @@
-# Horizon Cinnamon Flavour Image
+# base-cinnamon
 
 # Purpose
 
-This repository is for building Horizon Cinnamon Flavour Image.
+This repository is for building base image that Horizon Cinnamon Flavour Image bases on.
 
 This repo includes a Containerfile and a Github workflow for building the container image, signing, and proper metadata to be listed on [artifacthub](https://artifacthub.io/). As soon as the workflow is enabled in your repository, it will build the container image and push it to the Github Container Registry.
 
