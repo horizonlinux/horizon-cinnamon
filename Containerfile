@@ -89,9 +89,9 @@ RUN --mount=type=cache,dst=/var/cache \
         pipewire-pulseaudio \
         powerline \
         qgnomeplatform-qt5 \
-        redshift-gtk \
         lightdm \
         lightdm-gtk \
+        lightdm-gtk-greeter-settings \
         system-config-printer \
         totem-video-thumbnailer \
         wireplumber \
@@ -120,26 +120,22 @@ RUN --mount=type=cache,dst=/var/cache \
     --mount=type=cache,dst=/var/log \
     --mount=type=bind,from=ctx,source=/,target=/ctx \
     --mount=type=tmpfs,dst=/tmp \
-    systemctl disable gdm && \
     systemctl enable lightdm && \
     echo 'u lightdm - "Light Display Manager" /var/lib/lightdm' > /usr/lib/sysusers.d/lightdm.conf && \
     echo 'u nm-openconnect - "NetworkManager OpenConnect Plugin" /var/lib/nm-openconnect /usr/sbin/nologin' > /usr/lib/sysusers.d/nm-openconnect.conf && \
     echo 'u nm-openvpn - "NetworkManager OpenVPN Plugin" /var/lib/nm-openvpn /usr/sbin/nologin' > /usr/lib/sysusers.d/nm-openvpn.conf && \
     echo 'u wsdd - "Web Services Dynamic Discovery Daemon" /var/lib/wsdd /usr/sbin/nologin' > /usr/lib/sysusers.d/wsdd.conf && \
     systemctl set-default graphical.target 
+    echo 'greeter-session=lightdm-gtk-greeter' > /etc/lightdm/lightdm.conf \
 
 # Install Software manager held toghether by duct tape
 RUN --mount=type=cache,dst=/var/cache \
     --mount=type=cache,dst=/var/log \
     --mount=type=bind,from=ctx,source=/,target=/ctx \
     --mount=type=tmpfs,dst=/tmp \
-    cd /tmp/ \
-    git clone https://github.com/horizonlinux/FatInstall.git \
-    cd FatInstall \
-    cp usr / -r \
-    cd /tmp \
-    rm -r FatInstall \
-    cd / \
+    git clone https://github.com/horizonlinux/FatInstall.git /tmp/FatInstall \
+    cp /tmp/FatInstall/usr / -r \
+    rm -r /tmp/FatInstall \
     flatpak remote-delete fedora --force \
     flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo \
 
