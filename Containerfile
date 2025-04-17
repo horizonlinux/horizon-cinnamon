@@ -125,18 +125,18 @@ RUN --mount=type=cache,dst=/var/cache \
     echo 'u nm-openconnect - "NetworkManager OpenConnect Plugin" /var/lib/nm-openconnect /usr/sbin/nologin' > /usr/lib/sysusers.d/nm-openconnect.conf && \
     echo 'u nm-openvpn - "NetworkManager OpenVPN Plugin" /var/lib/nm-openvpn /usr/sbin/nologin' > /usr/lib/sysusers.d/nm-openvpn.conf && \
     echo 'u wsdd - "Web Services Dynamic Discovery Daemon" /var/lib/wsdd /usr/sbin/nologin' > /usr/lib/sysusers.d/wsdd.conf && \
-    systemctl set-default graphical.target 
-    echo 'greeter-session=lightdm-gtk-greeter' > /etc/lightdm/lightdm.conf \
+    systemctl set-default graphical.target && \
+    echo 'greeter-session=lightdm-gtk-greeter' > /etc/lightdm/lightdm.conf
 
 # Install Software manager held toghether by duct tape
 RUN --mount=type=cache,dst=/var/cache \
     --mount=type=cache,dst=/var/log \
     --mount=type=bind,from=ctx,source=/,target=/ctx \
     --mount=type=tmpfs,dst=/tmp \
-    git clone https://github.com/horizonlinux/FatInstall.git /tmp/FatInstall \
-    cp /tmp/FatInstall/usr / -r \
-    rm -r /tmp/FatInstall \
-    flatpak remote-delete fedora --force \
+    git clone https://github.com/horizonlinux/FatInstall.git /tmp/FatInstall && \
+    cp /tmp/FatInstall/usr / -r && \
+    rm -r /tmp/FatInstall && \
+    flatpak remote-delete fedora --force && \
     flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo \
 
 # Cleanup
