@@ -48,8 +48,8 @@ RUN --mount=type=cache,dst=/var/cache \
     --mount=type=bind,from=ctx,source=/,target=/ctx \
     --mount=type=tmpfs,dst=/tmp \
     for spice in \
-        gdm \
         uupd \
+        git \
         flatpak \
         NetworkManager-adsl \
         NetworkManager-bluetooth \
@@ -89,9 +89,8 @@ RUN --mount=type=cache,dst=/var/cache \
         powerline \
         qgnomeplatform-qt5 \
         redshift-gtk \
-       # slick-greeter \
-       # slick-greeter-cinnamon \
-       # lightdm-gtk \
+        lightdm \
+        lightdm-gtk \
         system-config-printer \
         totem-video-thumbnailer \
         wireplumber \
@@ -120,13 +119,27 @@ RUN --mount=type=cache,dst=/var/cache \
     --mount=type=cache,dst=/var/log \
     --mount=type=bind,from=ctx,source=/,target=/ctx \
     --mount=type=tmpfs,dst=/tmp \
-    systemctl enable gdm && \
-    # systemctl enable lightdm && \
-    echo 'u gdm 42 "GNOME Display Manager" /var/lib/gdm' > /usr/lib/sysusers.d/gdm.conf && \
-    # echo 'u lightdm - "Light Display Manager" /var/lib/lightdm' > /usr/lib/sysusers.d/lightdm.conf && \
+    systemctl enable lightdm && \
+    echo 'u lightdm - "Light Display Manager" /var/lib/lightdm' > /usr/lib/sysusers.d/lightdm.conf && \
     echo 'u nm-openconnect - "NetworkManager OpenConnect Plugin" /var/lib/nm-openconnect /usr/sbin/nologin' > /usr/lib/sysusers.d/nm-openconnect.conf && \
     echo 'u nm-openvpn - "NetworkManager OpenVPN Plugin" /var/lib/nm-openvpn /usr/sbin/nologin' > /usr/lib/sysusers.d/nm-openvpn.conf && \
-    echo 'u wsdd - "Web Services Dynamic Discovery Daemon" /var/lib/wsdd /usr/sbin/nologin' > /usr/lib/sysusers.d/wsdd.conf
+    echo 'u wsdd - "Web Services Dynamic Discovery Daemon" /var/lib/wsdd /usr/sbin/nologin' > /usr/lib/sysusers.d/wsdd.conf && \
+    systemctl set-default graphical.target 
+
+# Install Software manager held toghether by duct tape
+RUN --mount=type=cache,dst=/var/cache \
+    --mount=type=cache,dst=/var/log \
+    --mount=type=bind,from=ctx,source=/,target=/ctx \
+    --mount=type=tmpfs,dst=/tmp \
+    cd /tmp/ \
+    git clone https://github.com/horizonlinux/FatInstall.git \
+    cd FatInstall \
+    cp usr / -r \
+    cd /tmp \
+    rm -r FatInstall \
+    cd / \
+    flatpak remote-delete fedora --force \
+    flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo \
 
 # Cleanup
 RUN --mount=type=cache,dst=/var/cache \
