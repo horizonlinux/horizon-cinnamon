@@ -50,6 +50,7 @@ RUN --mount=type=cache,dst=/var/cache \
     for spice in \
         uupd \
         git \
+        html2text \
         flatpak \
         NetworkManager-adsl \
         NetworkManager-bluetooth \
