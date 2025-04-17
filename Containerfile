@@ -138,8 +138,8 @@ RUN --mount=type=cache,dst=/var/cache \
     cp /tmp/FatInstall/usr / -r && \
     rm -r /tmp/FatInstall && \
     flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo && \
-    sudo gtk-update-icon-cache -f /usr/share/icons/hicolor && \
-    sudo gtk-update-icon-cache -f /usr/share/icons/Mint-Y
+    gtk-update-icon-cache -f /usr/share/icons/hicolor && \
+    glib-compile-schemas /usr/share/glib-2.0/schemas/
     
 
 # Cleanup
