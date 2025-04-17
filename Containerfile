@@ -112,7 +112,6 @@ RUN --mount=type=cache,dst=/var/cache \
         xorg-x11-drv-vmware; \
     do \
     dnf5 install -y $spice; \
-    dnf5 remove -y gdm gnome-session gnome shell \
     done && unset -v spice
 
 # Configure
