@@ -137,7 +137,6 @@ RUN --mount=type=cache,dst=/var/cache \
     git clone https://github.com/horizonlinux/FatInstall.git /tmp/FatInstall && \
     cp /tmp/FatInstall/usr / -r && \
     rm -r /tmp/FatInstall && \
-    flatpak remote-delete fedora --force && \
     flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo && \
     sudo gtk-update-icon-cache -f /usr/share/icons/hicolor && \
     sudo gtk-update-icon-cache -f /usr/share/icons/Mint-Y
