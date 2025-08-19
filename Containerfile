@@ -3,7 +3,7 @@ FROM scratch AS ctx
 COPY build_files /
 
 # Base Image
-FROM ghcr.io/ublue-os/bazzite:stable
+FROM ghcr.io/horizonlinux/base-cinnamon:latest
 
 ## Other possible base images include:
 # FROM ghcr.io/ublue-os/bazzite:latest
@@ -22,6 +22,18 @@ RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     --mount=type=cache,dst=/var/cache \
     --mount=type=cache,dst=/var/log \
     --mount=type=tmpfs,dst=/tmp \
+    for copr in \
+        ublue-os/staging \
+        ublue-os/packages; \
+    do \
+    dnf -y install dnf5-plugins && \
+    dnf -y copr enable $copr; \
+    done && unset -v copr && \
+    dnf install -y bazaar && \
+    cd /tmp
+    git clone https://github.com/horizonlinux/bazaar-config.git && \
+    cd bazaar-config && \
+    cp usr / -r && \
     /ctx/build.sh && \
     ostree container commit
     
