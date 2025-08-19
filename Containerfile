@@ -30,7 +30,7 @@ RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     dnf -y copr enable $copr; \
     done && unset -v copr && \
     dnf install -y bazaar git && \
-    cd /tmp
+    cd /tmp && \
     git clone https://github.com/horizonlinux/bazaar-config.git && \
     cd bazaar-config && \
     cp usr / -r && \
