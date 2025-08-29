@@ -22,3 +22,40 @@ dnf5 install -y tmux
 #### Example for enabling a System Unit File
 
 systemctl enable podman.socket
+
+echo "NoDisplay=true" >> /usr/share/applications/cinnamon-color-panel.desktop
+echo "NoDisplay=true" >> /usr/share/applications/cinnamon-display-panel.desktop
+echo "NoDisplay=true" >> /usr/share/applications/cinnamon-network-panel.desktop
+echo "NoDisplay=true" >> /usr/share/applications/cinnamon-onscreen-keyboard.desktop
+echo "NoDisplay=true" >> /usr/share/applications/cinnamon-settings-actions.desktop
+echo "NoDisplay=true" >> /usr/share/applications/cinnamon-settings-applets.desktop
+echo "NoDisplay=true" >> /usr/share/applications/cinnamon-settings-backgrounds.desktop
+echo "NoDisplay=true" >> /usr/share/applications/cinnamon-settings-calendar.desktop
+echo "NoDisplay=true" >> /usr/share/applications/cinnamon-settings-default.desktop
+echo "NoDisplay=true" >> /usr/share/applications/cinnamon-settings-desklets.desktop
+echo "NoDisplay=true" >> /usr/share/applications/cinnamon-settings-desktop.desktop
+echo "NoDisplay=true" >> /usr/share/applications/cinnamon-settings-effects.desktop
+echo "NoDisplay=true" >> /usr/share/applications/cinnamon-settings-extensions.desktop
+echo "NoDisplay=true" >> /usr/share/applications/cinnamon-settings-fonts.desktop
+echo "NoDisplay=true" >> /usr/share/applications/cinnamon-settings-general.desktop
+echo "NoDisplay=true" >> /usr/share/applications/cinnamon-settings-gestures.desktop
+echo "NoDisplay=true" >> /usr/share/applications/cinnamon-settings-hotcorner.desktop
+echo "NoDisplay=true" >> /usr/share/applications/cinnamon-settings-info.desktop
+echo "NoDisplay=true" >> /usr/share/applications/cinnamon-settings-keyboard.desktop
+echo "NoDisplay=true" >> /usr/share/applications/cinnamon-settings-mouse.desktop
+echo "NoDisplay=true" >> /usr/share/applications/cinnamon-settings-nightlight.desktop
+echo "NoDisplay=true" >> /usr/share/applications/cinnamon-settings-notifications.desktop
+echo "NoDisplay=true" >> /usr/share/applications/cinnamon-settings-panel.desktop
+echo "NoDisplay=true" >> /usr/share/applications/cinnamon-settings-power.desktop
+echo "NoDisplay=true" >> /usr/share/applications/cinnamon-settings-privacy.desktop
+echo "NoDisplay=true" >> /usr/share/applications/cinnamon-settings-screensaver.desktop
+echo "NoDisplay=true" >> /usr/share/applications/cinnamon-settings-sound.desktop
+echo "NoDisplay=true" >> /usr/share/applications/cinnamon-settings-startup.desktop
+echo "NoDisplay=true" >> /usr/share/applications/cinnamon-settings-themes.desktop
+echo "NoDisplay=true" >> /usr/share/applications/cinnamon-settings-tiling.desktop
+echo "NoDisplay=true" >> /usr/share/applications/cinnamon-settings-universal-access.desktop
+echo "NoDisplay=true" >> /usr/share/applications/cinnamon-settings-user.desktop
+echo "NoDisplay=true" >> /usr/share/applications/cinnamon-settings-windows.desktop
+echo "NoDisplay=true" >> /usr/share/applications/cinnamon-settings-workspaces.desktop
+echo "NoDisplay=true" >> /usr/share/applications/cinnamon-wacom-panel.desktop
+echo "NoDisplay=true" >> /usr/share/applications/mintlocale.desktop
